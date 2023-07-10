@@ -1,16 +1,29 @@
 //package DotComGame;
-public class SimpleDotCom {
-    int[] locationCells;
-    int numOfHits = 0;
+import java.util.ArrayList;
 
-    public void setLocationCells(int[] locs) {
+public class SimpleDotCom {
+    private ArrayList<String> locationCells;
+    // int numOfHits = 0;
+
+    public void setLocationCells(ArrayList<String> locs) {
         locationCells = locs;
     }
 
-    public String checkYourself(String stringGuess) {
-        int guess = Integer.parseInt(stringGuess);
+    public String checkYourself(String userInput) {
+        // int guess = Integer.parseInt(stringGuess);
         String result = "miss";
-        for (int cell : locationCells) {
+        int index = locationCells.indexOf(userInput);
+
+        if (index >= 0) {
+            locationCells.remove(index);
+            if (locationCells.isEmpty()) {
+                result = "kill";
+            } else {
+                result = "hit";
+            }
+        }
+
+        /* for (int cell : locationCells) {
             if (guess == cell) {
                 result = "hit";
                 numOfHits++;
@@ -23,6 +36,8 @@ public class SimpleDotCom {
         }
 
         System.out.println(result);
+
+        */
         return result;
     }
 }
